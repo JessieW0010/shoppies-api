@@ -4,8 +4,13 @@ import controller from '../controllers/search.js';
 const searchHandler = express.Router();
 
 searchHandler.post(
-  '/',
-  controller.search,
+  '/title',
+  controller.searchByTitle,
+)
+
+searchHandler.post(
+  '/id',
+  controller.searchById,
 )
 
 export default searchHandler;
