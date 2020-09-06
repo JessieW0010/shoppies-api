@@ -1,9 +1,12 @@
 import bcrypt from 'bcryptjs';
 import knex from '../knex.js';
+import jwt from 'jsonwebtoken';
 import { accountsTable } from '../models/tableNames.js';
 /**
  * @description - contains static methods for authentication
  */
+
+const jwtKey = process.env.JWT_SECRET_KEY
 class AuthController {
   /**
    * @description - creates a new account
@@ -49,6 +52,52 @@ class AuthController {
         err
       })
     })
+  }
+
+  /**
+   * @description - checks if acct exists and email and password are correct
+   * @param { object } req - request object
+   * @param { object } res - response object
+   */
+  static async login(req, res) {
+    const { email, password } = req.body;
+    knex.select('*').from(accountsTable).where('email', 'ilike', email)
+      .then((account) => {
+
+        console.log(account)
+        
+        if (account.length > 0) {
+          const accountInfo = account[0];
+          const passwordCorrect = bcrypt.compareSync(password, accountInfo.password);
+          if (passwordCorrect) {
+            const token = jwt.sign({
+              id: accountInfo.id
+            }, jwtKey);
+            return res.status(200).json({
+              msg: "Login successful",
+              token
+            })
+          } else {
+            return res.status(401).json({
+              msg: "Invalid Credentials",
+              token
+            })
+          }
+        } else {
+          return res.status(401).json({
+            msg: "Invalid Credentials",
+            token
+          })
+        }
+      })
+      .catch((err)=>{
+        console.log(err)
+        return res.status(500)
+        .json({
+          msg: 'Internal server error.',
+          err
+        })
+      });
   }
 }
 

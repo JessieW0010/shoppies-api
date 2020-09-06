@@ -8,4 +8,9 @@ authHandler.post(
   controller.register,
 )
 
+authHandler.post(
+  '/login',
+  controller.login,
+)
+
 export default authHandler;
