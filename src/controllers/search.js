@@ -1,6 +1,8 @@
 import "dotenv/config.js";
 import Axios from 'axios';
-
+/**
+ * @description - contains static methods for searching movies
+ */
 class SearchController {
   static async searchByTitle(req, res) {
     const { title, page } = req.body;

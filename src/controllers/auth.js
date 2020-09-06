@@ -63,8 +63,6 @@ class AuthController {
     const { email, password } = req.body;
     knex.select('*').from(accountsTable).where('email', 'ilike', email)
       .then((account) => {
-
-        console.log(account)
         
         if (account.length > 0) {
           const accountInfo = account[0];

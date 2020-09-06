@@ -2,8 +2,8 @@
   "name": "shoppies-api",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "server.ts",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js"
