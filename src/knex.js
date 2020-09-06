@@ -1,6 +1,6 @@
-import "dotenv/config";
+import "dotenv/config.js";
 import knex from "knex";
-import config from "../knexfile";
+import config from "../knexfile.js";
 
 const environment = process.env.NODE_ENV || "development";
 const dbClient = knex(config[environment]);

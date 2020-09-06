@@ -1,7 +1,7 @@
-require("dotenv").config();
+import "dotenv/config.js";
 // Update with your config settings.
 
-module.exports = {
+const config = {
   development: {
     client: 'postgresql',
     connection: {
@@ -19,3 +19,5 @@ module.exports = {
     }
   }
 };
+
+export default config;

@@ -1,8 +1,11 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 const app = express();
 
 import auth from './routes/auth.js';
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/auth', auth);
 
 app.get('/', (req, res) => {

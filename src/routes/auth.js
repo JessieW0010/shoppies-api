@@ -1,11 +1,11 @@
 import express    from 'express';
-import controller from '../controllers/auth';
+import controller from '../controllers/auth.js';
 
 const authHandler = express.Router();
 
 authHandler.post(
-  '/signup',
-  controller.signup,
+  '/register',
+  controller.register,
 )
 
 export default authHandler;
