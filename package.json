@@ -1,0 +1,24 @@
+{
+  "name": "shoppies-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JessieW0010/shoppies-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JessieW0010/shoppies-api/issues"
+  },
+  "homepage": "https://github.com/JessieW0010/shoppies-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "type": "module"
+}
