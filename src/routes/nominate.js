@@ -9,4 +9,10 @@ nominateHandler.post(
   controller.nominateMovies,
 )
 
+nominateHandler.get(
+  '/',
+  authenticate,
+  controller.getNominated,
+)
+
 export default nominateHandler;
