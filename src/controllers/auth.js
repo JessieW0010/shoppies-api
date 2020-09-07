@@ -78,13 +78,11 @@ class AuthController {
           } else {
             return res.status(401).json({
               msg: "Invalid Credentials",
-              token
             })
           }
         } else {
           return res.status(401).json({
             msg: "Invalid Credentials",
-            token
           })
         }
       })
