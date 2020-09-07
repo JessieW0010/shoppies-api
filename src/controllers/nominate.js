@@ -27,7 +27,7 @@ class NominateController {
   }
 
   static async getNominated(req, res) {
-    return knex.select('*').from(nominationsTable).where('user_id', req.user.id)
+    return knex.select('imdbID').from(nominationsTable).where('user_id', req.user.id)
       .then((nominated) => {
         return res.status(200)
         .json({

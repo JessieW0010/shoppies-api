@@ -38,9 +38,15 @@ class AuthController {
         password: password_digest,
       })
       .then(() => {
+        const token = jwt.sign({
+          id: accountInfo.id,
+          first_name: account.first_name,
+          last_name: account.last_name
+        }, jwtKey);
         return res.status(200)
         .json({
-          msg: 'Account created!'
+          msg: 'Account created!',
+          token
         })
       })
       
@@ -69,7 +75,9 @@ class AuthController {
           const passwordCorrect = bcrypt.compareSync(password, accountInfo.password);
           if (passwordCorrect) {
             const token = jwt.sign({
-              id: accountInfo.id
+              id: accountInfo.id,
+              first_name: account.first_name,
+              last_name: account.last_name
             }, jwtKey);
             return res.status(200).json({
               msg: "Login successful",

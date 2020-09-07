@@ -1,4 +1,6 @@
 import "dotenv/config.js";
+import path from 'path';
+const __dirname = path.resolve();
 // Update with your config settings.
 
 const config = {
