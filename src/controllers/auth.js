@@ -37,11 +37,13 @@ class AuthController {
         email,
         password: password_digest,
       })
-      .then(() => {
+      .returning(['id','first_name', 'last_name', 'email'])
+      .then((accountInfo) => {
         const token = jwt.sign({
-          id: accountInfo.id,
-          first_name: account.first_name,
-          last_name: account.last_name
+          id: accountInfo[0].id,
+          first_name: accountInfo[0].first_name,
+          last_name: accountInfo[0].last_name,
+          email: accountInfo[0].email
         }, jwtKey);
         return res.status(200)
         .json({
@@ -76,8 +78,9 @@ class AuthController {
           if (passwordCorrect) {
             const token = jwt.sign({
               id: accountInfo.id,
-              first_name: account.first_name,
-              last_name: account.last_name
+              first_name: accountInfo.first_name,
+              last_name: accountInfo.last_name,
+              email: accountInfo.email
             }, jwtKey);
             return res.status(200).json({
               msg: "Login successful",
