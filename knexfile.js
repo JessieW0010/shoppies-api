@@ -1,6 +1,4 @@
 import "dotenv/config.js";
-import path from 'path';
-const __dirname = path.resolve();
 // Update with your config settings.
 
 const config = {
@@ -17,7 +15,7 @@ const config = {
       max: 10
     },
     migrations: {
-      directory: __dirname + '/migrations',
+      directory: './migrations',
       tableName: 'knex_migrations'
     }
   },
@@ -25,7 +23,7 @@ const config = {
     client: 'pg',
     connection: process.env.DATABASE_URL,
     migrations: {
-      directory: __dirname + '/migrations',
+      directory: './migrations',
       tableName: 'knex_migrations'
     }
   }
