@@ -13,6 +13,6 @@ app.use('/auth', auth);
 app.use('/search', search);
 app.use('/nominate', nominate);
 
-app.listen(8000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log('Server listening on port 8000!')
 });
