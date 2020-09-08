@@ -15,4 +15,10 @@ nominateHandler.get(
   controller.getNominated,
 )
 
+nominateHandler.post(
+  '/undo',
+  authenticate,
+  controller.unNominateMovies,
+)
+
 export default nominateHandler;

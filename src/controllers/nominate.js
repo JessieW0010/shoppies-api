@@ -26,6 +26,35 @@ class NominateController {
       });
   }
 
+  static async unNominateMovies(req, res) {
+    const { imdbID } = req.body;
+    const user_id = req.user.id;
+
+    return knex(nominationsTable)
+      .where((qb) => {
+        if (user_id) {
+          qb.where('user_id', '=', user_id);
+        } 
+        if (imdbID) {
+          qb.orWhere('imdbID', '=', imdbID);
+        }
+      })
+      .del()
+      .then(() => {
+        return res.status(200)
+        .json({
+          msg: 'Successfully deleted nomination.'
+        })
+      })
+      .catch((err) => {
+        return res.status(500)
+        .json({
+          msg: 'Internal server error.',
+          err
+        })
+      });
+  }
+
   static async getNominated(req, res) {
     return knex.select('imdbID').from(nominationsTable).where('user_id', req.user.id)
       .then((nominated) => {
