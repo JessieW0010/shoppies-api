@@ -1,4 +1,4 @@
-import "dotenv/config.js";
+require("dotenv")
 // Update with your config settings.
 
 const config = {
@@ -29,4 +29,4 @@ const config = {
   }
 };
 
-export default config;
+module.exports = config;
