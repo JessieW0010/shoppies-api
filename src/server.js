@@ -1,12 +1,15 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import cors from 'cors';
 const app = express();
 
 import auth from './routes/auth.js';
 import search from './routes/search.js';
 import nominate from './routes/nominate.js';
 
+app.use(cors());
+app.options('*', cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
